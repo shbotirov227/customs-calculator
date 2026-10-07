@@ -10,6 +10,8 @@ lerna-debug.log*
 node_modules
 dist
 dist-ssr
+/output/
+/tmp/
 *.local
 
 # Editor directories and files
@@ -26,6 +28,11 @@ dist-ssr
 # Private/reference source material (never ship or commit)
 /references/
 /private/
+/*.pdf
+/*.xls
+/*.xlsx
+/*.xml
+/*.zip
 /duty_calc_variants.html
 /КОДЫ-НОВЫЕ.xlsx
 /4911947.pdf
