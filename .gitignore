@@ -1,0 +1,42 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+node_modules
+dist
+dist-ssr
+*.local
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Private/reference source material (never ship or commit)
+/references/
+/private/
+/duty_calc_variants.html
+/КОДЫ-НОВЫЕ.xlsx
+/4911947.pdf
+/6041645.pdf
+/ГТД.zip
+/ГТД/
+/Telegram*.jpg
+/Telegram*.jpeg
+/Telegram*.png
+/photo_*.jpg
+/photo_*.jpeg
+/image_*.jpg
+/image_*.jpeg
+/AWB.jpg
