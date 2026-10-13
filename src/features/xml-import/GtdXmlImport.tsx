@@ -1,14 +1,14 @@
 import { FileUp } from 'lucide-react'
 import { useState } from 'react'
 
-import { Button } from '@/components/ui/Button'
+import { Button } from '@/components/ui/button'
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from '@/components/ui/Card'
+} from '@/components/ui/card'
 import {
   Dialog,
   DialogClose,
@@ -17,9 +17,9 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle,
-} from '@/components/ui/Dialog'
-import { Input } from '@/components/ui/Input'
-import { Label } from '@/components/ui/Label'
+} from '@/components/ui/dialog'
+import { Input } from '@/components/ui/input'
+import { Label } from '@/components/ui/label'
 import { parseGtdXmlFile, type GtdImportPreview } from '@/features/xml-import/gtd-xml'
 
 interface GtdXmlImportProps {

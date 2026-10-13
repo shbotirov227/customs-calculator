@@ -2,9 +2,9 @@ import { useDeferredValue, useId, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { LoaderCircle, Search } from "lucide-react";
 
-import { Button } from "@/components/ui/Button";
-import { Input } from "@/components/ui/Input";
-import { Label } from "@/components/ui/Label";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 import { productCatalogSearchQueryOptions } from "@/data/product-catalog";
 import type { ProductCatalogItem } from "@/types/product-catalog";
 

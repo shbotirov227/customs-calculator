@@ -2,7 +2,7 @@ import { CalendarDays } from "lucide-react";
 import { useState, type Ref } from "react";
 import { Popover as PopoverPrimitive } from "radix-ui";
 
-import { Button } from "@/components/ui/Button";
+import { Button } from "@/components/ui/button";
 import { Calendar } from "@/components/ui/Calendar";
 import {
   InputGroup,

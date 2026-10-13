@@ -8,7 +8,7 @@ import {
 
 import { CatalogSearch } from "@/features/catalog/CatalogSearch";
 import { GtdXmlImport } from "@/features/xml-import/GtdXmlImport";
-import { Button } from "@/components/ui/Button";
+import { Button } from "@/components/ui/button";
 import { Alert, AlertDescription } from "@/components/ui/Alert";
 import {
   Card,
@@ -16,10 +16,10 @@ import {
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@/components/ui/Card";
-import { Input } from "@/components/ui/Input";
+} from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
 import { DatePicker } from "@/components/ui/DatePicker";
-import { Label } from "@/components/ui/Label";
+import { Label } from "@/components/ui/label";
 import {
   Table,
   TableBody,

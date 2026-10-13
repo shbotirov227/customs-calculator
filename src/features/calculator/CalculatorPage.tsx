@@ -9,11 +9,11 @@ import {
 import { useState } from "react";
 import { FormProvider, useForm, useWatch } from "react-hook-form";
 
-import { Button } from "@/components/ui/Button";
+import { Button } from "@/components/ui/button";
 import { Alert, AlertDescription } from "@/components/ui/Alert";
 import { CalculationForm } from "@/features/calculator/CalculationForm";
 import { CalculationResults } from "@/features/calculator/CalculationResults";
-import { Card, CardContent } from "@/components/ui/Card";
+import { Card, CardContent } from "@/components/ui/card";
 import { calculateImportPayments } from "@/domain/calculation";
 import type { CalculationInput, CalculationResult } from "@/types/calculation";
 import { createEmptyCalculationItem } from "@/utils/calculation-form";
