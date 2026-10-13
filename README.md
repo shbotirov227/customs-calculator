@@ -1,56 +1,72 @@
-# O'zbekiston import bojxona kalkulyatori
+# Uzbekistan Import Customs Calculator
 
-React, TypeScript va Vite asosidagi take-home demo. Ilova lokal HS katalogidan qidiradi, bir nechta tovar uchun ma'lum to'lov qismlarini hisoblaydi, GTD XML namunasini preview orqali import qiladi va faqat to'liq hamda eskirmagan hisob snapshotidan PDF yaratadi.
+A source-constrained demo calculator built with React, TypeScript, and Vite. The application searches a local HS catalog, calculates supported payment components for multiple products, imports the supported GTD XML sample through a guarded preview flow, and generates PDF reports from calculation snapshots.
 
-## Ishga tushirish
+## Getting started
 
-Node.js va npm o'rnatilgan bo'lishi kerak.
+Requirements: Node.js and npm.
 
 ```bash
 npm install
 npm run dev
 ```
 
-Asosiy tekshiruvlar:
+Available verification commands:
 
 ```bash
-npm test
 npm run typecheck
 npm run lint
+npm run test
 npm run build
 npm run preview
 ```
 
-`npm run catalog:build` faqat private `references/КОДЫ-НОВЫЕ.xlsx` manbasidan lokal katalogni qayta yaratish zarur bo'lganda ishlatiladi. Xom manba browser bundle'iga ko'chirilmaydi.
+## Included functionality
 
-## Data flow
+- HS catalog search by code prefix or description.
+- Add, edit, duplicate, and remove 1–10 product lines.
+- React Hook Form state management with Zod validation.
+- Decimal-safe monetary calculations with a single rounding policy.
+- Explicit handling for missing, manual, confirmed, unsupported, and zero-rate states.
+- Stale-result detection that prevents exporting outdated snapshots.
+- Final PDF export for complete calculations and clearly labelled draft PDF export for incomplete calculations.
+- Cyrillic-compatible PDF font embedding and multi-page reports.
+- Client-only GTD XML preview, validation, cancellation, and confirmation flow.
 
-- Forma va tovar qatorlari React Hook Form hamda `useFieldArray`da saqlanadi.
-- Lokal katalog dinamik import qilinadi; qidiruv va cache TanStack Query orqali boshqariladi. Hozir tashqi API yo'q, katalog loaderi kelajakdagi API adapteri uchun minimal chegara vazifasini bajaradi.
-- Validatsiyadan o'tgan snapshot sof TypeScript calculation engine'iga uzatiladi. Pul arifmetikasi `decimal.js` bilan bajariladi.
-- PDF formulalarni takrorlamaydi; engine qaytargan to'liq va eskirmagan snapshotdan yaratiladi.
-- GTD XML browserda lokal o'qiladi. Import faqat tasdiqlangan HS kodi va tavsif mappingini preview hamda foydalanuvchi tasdig'idan keyin formaga qo'llaydi.
+## XML import
 
-## Demo cheklovlari
+The importer accepts only XML documents with the `GTD_eCopy_DefEdFormat` root. Files containing `DOCTYPE`, external entities, active HTML or script markup, an unsupported root, or more than 512 KB are rejected.
 
-- HS katalogida boj, QQS yoki aksiz stavkalari yo'q. Katalogdagi kod stavka topilganini anglatmaydi.
-- Bazaviy tariflar, QQS, aksiz, ayrim yig'imlar, valuta kursi policy'si va kombinatsiyali tarif qoidalari uchun to'liq tasdiqlangan manbalar berilmagan.
-- Topilmagan stavka `0` hisoblanmaydi. Qo'lda kiritilgan stavka tasdiqlangan manbadan alohida belgilanadi.
-- Yetishmayotgan yoki qo'llab-quvvatlanmaydigan qoida bo'lsa yakuniy jami va final PDF eksporti bloklanadi.
-- Natijalar real bojxona deklaratsiyasi yoki yuridik xulosa emas; bu source-cheklangan demo.
-- XML import faqat `GTD_eCopy_DefEdFormat` namunasi uchun. ZIP, `eDataXML`, qiymat, miqdor, valuta, kurs va boj stavkalari import qilinmaydi.
-- `references/`, xom PDF/XLSX/XML/ZIP va real GTD rekvizitlari Git hamda production builddan chiqarilgan.
+Only HS codes and descriptions with confirmed semantics are mapped from XML. Quantity, unit, customs value, currency, exchange rate, and tariff data are not inferred. Missing fields are shown in the preview and must be completed manually.
 
-Huquqiy va missing-data tafsilotlari [docs/TASK.md](docs/TASK.md)da qayd etilgan.
+The root-level `test.xml` file is intentionally rejected if it is not a valid GTD document. Use a synthetic GTD XML document for local testing. Real GTD party, company, address, banking, or identifier data must never be copied into source code, tests, logs, or public assets.
 
-## Vercelga joylashtirish
+## Calculation limitations
 
-Loyihada router yo'q va barcha UI bitta root sahifada ishlaydi, shuning uchun `vercel.json` yoki SPA rewrite kerak emas.
+The catalog contains codes and descriptions, not tariff rates. The supplied source package does not fully confirm base customs-duty rates, VAT, excise, all applicable fees, exchange-rate policy, or the `MAX`/`SUM` rule for combined tariffs.
 
-1. Repository'ni Git provayderiga joylashtirgandan keyin Vercel Dashboard'da **Add New → Project** orqali import qiling.
-2. Framework preset sifatida **Vite** tanlanganini tekshiring.
-3. Install command uchun `npm install`, build command uchun `npm run build`, output directory uchun `dist` ishlating.
-4. Environment variable talab qilinmaydi. Deploydan oldin test, typecheck, lint va buildni lokal bajaring.
-5. Deploydan keyin katalog qidiruvi, incomplete/stale bloklari, XML preview/cancel/confirm va mobil/desktop layoutni smoke-test qiling.
+Therefore:
 
-Bu repository'dan avtomatik deploy yoki push bajarilmaydi.
+- an unknown rate is never treated as zero;
+- manually entered rates are visibly distinguished from confirmed sources;
+- incomplete calculations do not expose a final total;
+- final PDF export is available only for a complete, current snapshot;
+- draft PDFs are explicitly marked and are not official customs calculations.
+
+The application output is not a customs declaration, legal opinion, or official customs assessment.
+
+## Data protection
+
+`references/`, raw PDF/XLSX/XML/ZIP files, and private GTD records are excluded from Git and production bundles. XML files are parsed locally in the browser and are not uploaded to a server. Tests use synthetic data only.
+
+## Vercel deployment
+
+The application does not use a router, so no SPA rewrite is required.
+
+1. Import the repository into a Vercel project.
+2. Select the **Vite** framework preset.
+3. Set the build command to `npm run build`.
+4. Use `dist` as the output directory.
+5. After deployment, smoke-test catalog search, product editing, XML preview, PDF export, and responsive layouts.
+
+This repository does not perform automatic commits, pushes, or deployments.

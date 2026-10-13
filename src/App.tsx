@@ -1,7 +1,7 @@
-import { CustomsCalculator } from '@/components/customs-calculator'
+import { CalculatorPage } from '@/features/calculator/CalculatorPage'
 
 function App() {
-  return <CustomsCalculator />
+  return <CalculatorPage />
 }
 
 export default App

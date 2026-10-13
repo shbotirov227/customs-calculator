@@ -47,3 +47,5 @@ dist-ssr
 /image_*.jpg
 /image_*.jpeg
 /AWB.jpg
+
+text.xml
